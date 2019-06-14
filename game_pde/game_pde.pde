@@ -1,5 +1,6 @@
 
-/* ****  ********************** stage make**************************   **** */
+/* ****  ********************** display make**************************   **** */
+
 abstract class StageMake{
   
   int sizeX, sizeY; //block of size
@@ -7,7 +8,7 @@ abstract class StageMake{
   int playerX = 0, playerY = 0; //player of position
   int flagKey = 0; //playerの進む方向を決めるflag
   int moveX = 20, moveY = 20;
-  
+  int key_par = 0; //前に押されたキーを記憶する
   
   StageMake(int w, int h){
     sizeX = w;
@@ -80,6 +81,7 @@ abstract class StageMake{
     if(flagKey == 4 && height - sizeY*5/4 >= playerY){
       playerY += 10;
     }
+ 
     ellipse(playerX + sizeX/2, playerY + sizeY/2, sizeX, sizeY);
     iceBlock();
   }
@@ -101,8 +103,9 @@ class Lv1 extends StageMake{
   }
   void rockBlock(){
     fill(115, 66, 41);
-    rect(sizeX * 4, 0, sizeX, sizeY);
-    if(playerX >= sizeX*4 - sizeX && !(playerX == sizeX/2)){
+    rect(sizeX * 4, sizeY*0, sizeX, sizeY);
+    if(playerX >= sizeX*4 - sizeX && playerX <= sizeX*4 + sizeX 
+    && playerY >= sizeY*0 && playerY <= sizeY*0 + sizeY ){
       flagKey = 0;
     }
   }
