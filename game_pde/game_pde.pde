@@ -495,6 +495,7 @@ class System{
     fill(0);
     textSize(130);
     text("GAMEOVER", width/14, height*2/3);
+    
   }
   
   
@@ -597,19 +598,21 @@ class System{
     }
   }
   
+  
   void makeTitle() {
     /* 仮 */
-    background(80, 80, 255);
+    background(50,150,255);
     PFont font = createFont("Yu Gothic", 64, true);
     textFont(font);
+    textSize(50);
+    text("南極大陸から抜け出せ", 150, 220);
     textSize(20);
-    text("タイトル", 340, 200);
-    text("キーボードから選択するLvの数字を押してください.", 180, 250);
-    text("[1].Lv1", 120, 300);
-    text("[2].Lv2", 240, 300);
-    text("[3].Lv3", 360, 300);
-    text("[4].Lv4", 480, 300);
-    text("[5].Lv5", 600, 300);
+    text("キーボード上で選択するLvの数字を押してください.", 160, 430);
+    text("[1].Lv1", 120, 500);
+    text("[2].Lv2", 240, 500);
+    text("[3].Lv3", 360, 500);
+    text("[4].Lv4", 480, 500);
+    text("[5].Lv5", 600, 500);
   }
   
   int selectLv() {
