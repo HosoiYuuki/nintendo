@@ -596,6 +596,51 @@ class System{
       fill(200);
     }
   }
+  
+  void makeTitle() {
+    /* 仮 */
+    background(80, 80, 255);
+    PFont font = createFont("Yu Gothic", 64, true);
+    textFont(font);
+    textSize(20);
+    text("タイトル", 340, 200);
+    text("キーボードから選択するLvの数字を押してください.", 180, 250);
+    text("[1].Lv1", 120, 300);
+    text("[2].Lv2", 240, 300);
+    text("[3].Lv3", 360, 300);
+    text("[4].Lv4", 480, 300);
+    text("[5].Lv5", 600, 300);
+  }
+  
+  int selectLv() {
+    int l;
+    if((keyPressed == true) && (key == '1')){
+      l = 1;
+      return l;
+    }
+    
+    if((keyPressed == true) && (key == '2')) {
+      l = 2;
+      return l;
+    }
+    
+    if((keyPressed == true) && (key == '3')) {
+      l = 3;
+      return l;
+    }
+    
+    if((keyPressed == true) && (key == '4')) {
+      l = 4;
+      return l;
+    }
+    
+    if((keyPressed == true) && (key == '5')) {
+      l = 5;
+      return l;
+    }
+    return 0;
+  }
+  
 }
 
 
@@ -612,59 +657,64 @@ void setup(){
   s[2] = new Lv5(map_lv5);
 }
 
+int Lv = 0;
 
 void draw(){
-  int Lv = 2;
-  if(Lv == 1){
-    if(exitFlag == 0){
-      s[Lv - 1].iceBlock();
-      s[Lv - 1].rockBlock();
-      s[Lv - 1].noIceBlock();
-      s[Lv - 1].exitBlock();
-      s[Lv - 1].fallBlock();
-      s[Lv - 1].triangleBlock();
-      s[Lv - 1].player();
-      system.time();
+  if(Lv == 0) {
+    system.makeTitle();
+    Lv = system.selectLv();
+  } else {
+    if(Lv == 1){
+      if(exitFlag == 0){
+        s[Lv - 1].iceBlock();
+        s[Lv - 1].rockBlock();
+        s[Lv - 1].noIceBlock();
+        s[Lv - 1].exitBlock();
+        s[Lv - 1].fallBlock();
+        s[Lv - 1].triangleBlock();
+        s[Lv - 1].player();
+        system.time();
+      }
+      if(exitFlag == 1){
+        system.goal();
+      }else if(exitFlag == 2){
+        system.gameOver();
+      }
     }
-    if(exitFlag == 1){
-      system.goal();
-    }else if(exitFlag == 2){
-      system.gameOver();
+    if(Lv == 2){
+      if(exitFlag == 0){
+        s[Lv - 1].iceBlock();
+        s[Lv - 1].rockBlock();
+        s[Lv - 1].noIceBlock();
+        s[Lv - 1].exitBlock();
+        s[Lv - 1].fallBlock();
+        s[Lv - 1].triangleBlock();
+        s[Lv - 1].player();
+        system.time();
+      }
+      if(exitFlag == 1){
+        system.goal();
+      }else if(exitFlag == 2){
+        system.gameOver();
+      }
     }
-  }
-  if(Lv == 2){
-    if(exitFlag == 0){
-      s[Lv - 1].iceBlock();
-      s[Lv - 1].rockBlock();
-      s[Lv - 1].noIceBlock();
-      s[Lv - 1].exitBlock();
-      s[Lv - 1].fallBlock();
-      s[Lv - 1].triangleBlock();
-      s[Lv - 1].player();
-      system.time();
-    }
-    if(exitFlag == 1){
-      system.goal();
-    }else if(exitFlag == 2){
-      system.gameOver();
-    }
-  }
   
-  if(Lv == 3){
-    if(exitFlag == 0){
-      s[Lv - 1].iceBlock();
-      s[Lv - 1].rockBlock();
-      s[Lv - 1].noIceBlock();
-      s[Lv - 1].exitBlock();
-      s[Lv - 1].fallBlock();
-      s[Lv - 1].triangleBlock();
-      s[Lv - 1].player();
-      system.time();
-    }
-    if(exitFlag == 1){
-      system.goal();
-    }else if(exitFlag == 2){
-      system.gameOver();
+    if(Lv == 3){
+      if(exitFlag == 0){
+        s[Lv - 1].iceBlock();
+        s[Lv - 1].rockBlock();
+        s[Lv - 1].noIceBlock();
+        s[Lv - 1].exitBlock();
+        s[Lv - 1].fallBlock();
+        s[Lv - 1].triangleBlock();
+        s[Lv - 1].player();
+        system.time();
+      }
+      if(exitFlag == 1){
+        system.goal();
+      }else if(exitFlag == 2){
+        system.gameOver();
+      }
     }
   }
 }
