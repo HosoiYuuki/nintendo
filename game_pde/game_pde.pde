@@ -522,7 +522,7 @@ class System{
   
   
   long t_start;
-  float t, lim = 1000;//80
+  float t, lim = 80;
   int rectX = 180;
   int rectY = 30;
   float lt = (width - rectX)/lim;
@@ -684,7 +684,7 @@ void setup(){
   
 }
 
-int Lv = 4;//0
+int Lv = 0;
 
 void draw(){
   if(Lv == 0) {
