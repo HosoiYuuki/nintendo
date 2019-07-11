@@ -701,9 +701,9 @@ void setup(){
   s =  new StageMake[5];
   s[0] = new Lv1(map_lv1);
   s[1] = new Lv2(map_lv2);
-  s[2] = new Lv5(map_lv5);
-  s[3] = new Lv3(map_lv3);
-  s[4] = new Lv4(map_lv4);
+  s[2] = new Lv3(map_lv3);
+  s[3] = new Lv4(map_lv4);
+  s[4] = new Lv5(map_lv5);
   
 }
 
