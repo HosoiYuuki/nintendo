@@ -110,6 +110,8 @@ int[] map_numX = new int[20];
 int[] map_numY = new int[15];
 
 int exitFlag = 0;  //1:goal 2:gameover
+int startNum = 0; // 0:start 1:playing
+
 abstract class StageMake{
   int rockX = 0, rockY = 0, size= 40, flagKey = 0; //1:right 2:left 3:up 4:down
   int playerX = size*3/2, playerY =size*3/2;
@@ -123,6 +125,9 @@ abstract class StageMake{
   StageMake(int[][] a){
     n = a;
   }
+ 
+  
+  
   void display(){
     rectMode(CORNER);
     for(int i = 0; i < boy.length; i++){
@@ -346,6 +351,7 @@ abstract class StageMake{
           fill(0);
           ellipse(size * j + rockX + size/2, size * i + size/2, size, size);
           if(rockX + size * j + size/2 == playerX && rockY + size * i + size/2 == playerY){
+            flagKey = 0;
             exitFlag = 2;
           }
         }
@@ -369,6 +375,7 @@ abstract class StageMake{
           noStroke();
           rect( rockX + size * j + size/2,  rockY + size * i + 10, 19, 13);
           if(rockX + size * j + size/2 == playerX && rockY + size * i + size/2 == playerY){
+            flagKey = 0;
             exitFlag = 1;
           }
         }
@@ -468,6 +475,7 @@ class System{
   float goalTime;
   int goalCol;
   
+  
   void goal(){ //ゴール画面
     colorMode(HSB, 90);
     background(99);
@@ -542,15 +550,18 @@ class System{
     
   }
   
-  
-  long t_start;
   float t, lim = 80;
   int rectX = 180;
   int rectY = 30;
-  float lt = (width - rectX)/lim;
+  float lt = (width - rectX) / lim;
+  long t_start;
+  float time = 0;
   
   void time(){  //時間を測る画面出力させるメソッド
-    t = (millis() - t_start)/1000.0;
+    time++;
+    if(time % 60 == 0){
+      t += 1;
+    }
     float limTime = lim - t; //残り時間
     fill(150);
     rect(0, height - 30, width, 30); 
@@ -564,7 +575,7 @@ class System{
     if(t <= lim){
       fill(0);
       textSize(20);
-      text(nf(limTime, 1, 2) + "sec", 90, height - 5);
+      text(nf(limTime, 1, 0) + "sec", 110, height - 5);
       fill(0);
       rect(0, height-30, rectX/2, rectY);
       timeCol(rankFlag);
@@ -646,12 +657,25 @@ class System{
   void makeTitle() {
     /* 仮 */
     background(50,150,255);
+    noStroke();
+    fill(0);
+    rect(0, 400, width, 150);
+    fill(200);
+    rect(0, 400, width, 20);
+    fill(200);
+    triangle(width/4, 400, width/4-30,400, width/4, 435);
+    triangle(width/4 + width/2, 400, width/4 + width/2+30,400, width/4 + width/2, 435);
+    rect(width/4, 400, width/2, 35);
     PFont font = createFont("Yu Gothic", 64, true);
     textFont(font);
     textSize(50);
+    fill(255);
     text("南極大陸から抜け出せ", 150, 220);
     textSize(20);
-    text("キーボード上で選択するLvの数字を押してください.", 160, 430);
+    fill(0);
+    text("Select Level", width/2 - 65, 430);
+    textSize(20);
+    fill(255);
     text("[1].Lv1", 120, 500);
     text("[2].Lv2", 240, 500);
     text("[3].Lv3", 360, 500);
@@ -701,7 +725,7 @@ void setup(){
   s =  new StageMake[5];
   s[0] = new Lv1(map_lv1);
   s[1] = new Lv2(map_lv2);
-  s[2] = new Lv3(map_lv3);
+  s[2] = new Lv5(map_lv3);
   s[3] = new Lv4(map_lv4);
   s[4] = new Lv5(map_lv5);
   
